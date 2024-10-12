@@ -51,3 +51,4 @@ jobs:
           WITH_V: true
           PRERELEASE: true
           DEFAULT_BUMP: patch
+          DRY_RUN: true
