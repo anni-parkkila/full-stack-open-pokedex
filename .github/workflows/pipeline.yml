@@ -43,8 +43,7 @@ jobs:
         if: ${{ env.CONDITION == 'true' }}
         run: curl https://api.render.com/deploy/srv-${{ secrets.RENDER_SERVICE_ID }}?key=${{ secrets.RENDER_API_KEY }}
       - name: Build failed
-        if: ${{ env.CONDITION == 'true' }}
-        #  && ${{ failure() }}
+        if: ${{ failure() && env.CONDITION == 'true' }}
         run: echo "should not trigger this on PR"
         # uses: stegzilla/discord-notify@v2
         # with:
@@ -53,8 +52,7 @@ jobs:
         #   title: Build failed
         #   message: 'commit [${{ github.sha }}](https://github.com/${{github.repository}}/commit/${{github.sha}}) broke the build :('
       - name: Build succeeded
-        if: ${{ env.CONDITION == 'true' }}
-        #  && ${{ success() }}
+        if: ${{ success() && env.CONDITION == 'true' }}
         run: echo "should not trigger this on PR"
       #   uses: stegzilla/discord-notify@v2
       #   with:
